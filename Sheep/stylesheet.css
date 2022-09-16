@@ -6,14 +6,14 @@ h1 {color: #ffffff;
     margin: 0 0 58px;}
 h5 {color: #ffffff;
     font-family: 'Lato', sans-serif;
-    font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 300;
-    line-height: 30px;
-    margin: 0 0 30px;}
+    line-height: 1rem;
+    margin: 0 0 1rem;}
 p {color: #adb7bd;
 	font-family: 'Lucida Sans', Arial, sans-serif;
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 1.1rem;
+    line-height: 1rem;
     /*text-indent: 30px;*/
     margin: 0;}
 a{color: #fe921f;
@@ -23,12 +23,12 @@ a:hover {color: #ffffff;}
 	color: #ffffff;
     display: inline-block;
     font-family: 'Lato', sans-serif;
-    font-size: 12px;
+    font-size: 0.9rem;
     font-weight: bold;
-    line-height: 12px;
-    letter-spacing: 1px;
-    margin: 0 0 30px;
-    padding: 10px 15px 8px;
+    line-height: 0.9rem;
+    letter-spacing: 0.1rem;
+    margin: 0 0 1.8rem;
+    padding: 0.9px 1px 0.9px;
     text-transform: uppercase; }
 body {background-color: #1c2329;
     margin: 0px;}
@@ -38,11 +38,11 @@ body {background-color: #1c2329;
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(5 1fr);
-    grid-template-rows: 40px 1fr 1fr 1fr;
-    gap: 5px;
-    padding: 10px;
+    grid-template-rows: 2rem 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.9rem;
     box-sizing: border-box;}
-.container div {padding: 10px;}
+.container div {padding: 0.5rem;}
 .header {
     grid-column-start: 1;
     grid-column-end: 5;}
@@ -54,29 +54,31 @@ body {background-color: #1c2329;
 .accordion-button {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 1rem;
     border: none;
     outline: none;
     text-align: left;
     cursor: pointer;
     transition: background 0.2s;
-    background: #333333;
+    background: #0b0e11;
     color: #adb7bd}
 .accordion-button::after {
     content: '\25be';
     float: right;
     transform: scale(1.5);}
-.accordion-button.active {
-    background-color: #0b0e11;}
-.accordion-button.active::after {
+.accordion-button:focus + .accordion-content {display: block;}
+.accordion-button:focus {
+    background-color: #333333;}
+.accordion-button:focus::after {
     content: '\25b4';}
 .accordion-content {
-    overflow: hidden;
+    /*overflow: hidden;
     max-height: 0;
-    transition: max-height 0.2s;
-    padding: 0 15px;
-
-}
+    transition: max-height 0.2s;*/
+    padding: 0 1.1rem;
+    display: none;
+    overflow: auto;
+    background: #13171d;}
 /* .content-pregunta {
     grid-column-start: 1;
     grid-column-end: 2;
@@ -96,9 +98,9 @@ body {background-color: #1c2329;
     border-width:0px;
     color:#594F4F;
     font-family:Arial, sans-serif;
-    font-size:18px;
+    font-size:1.1rem;
     overflow:hidden;
-    padding:10px 5px;
+    padding:0.9rem 0.7rem;
     word-break:normal;}
 .tg th{background-color:#9DE0AD;
 	border-color:#bbb;
@@ -106,10 +108,10 @@ body {background-color: #1c2329;
     border-width:0px;
     color:#493F3F;
     font-family:Arial, sans-serif;
-    font-size:18px;
+    font-size:1.1rem;
     font-weight:normal;
     overflow:hidden;
-    padding:10px 5px;
+    padding:0.9rem 0.7rem;
     word-break:normal;}
 .tg .tg-m0f0{background-color:#343434;
 	color:#adb7bd;
