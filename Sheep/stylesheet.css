@@ -66,16 +66,16 @@ body {background-color: #1c2329;
     content: '\25be';
     float: right;
     transform: scale(1.5);}
-.accordion-button-active {
+.accordion-button.active {
     background-color: #0b0e11;}
-.accordion-button-active::after {
+.accordion-button.active::after {
     content: '\25b4';}
 .accordion-content {
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.2s;
     padding: 0 15px;
-    
+
 }
 /* .content-pregunta {
     grid-column-start: 1;
