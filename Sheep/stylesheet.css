@@ -8,8 +8,8 @@ h5 {color: #ffffff;
     font-family: 'Lato', sans-serif;
     font-size: 25px;
     font-weight: 300;
-    line-height: 40px;
-    margin: 0 0 40px;}
+    line-height: 30px;
+    margin: 0 0 30px;}
 p {color: #adb7bd;
 	font-family: 'Lucida Sans', Arial, sans-serif;
     font-size: 18px;
@@ -30,7 +30,61 @@ a:hover {color: #ffffff;}
     margin: 0 0 30px;
     padding: 10px 15px 8px;
     text-transform: uppercase; }
-body {background-color: #1c2329;}
+body {background-color: #1c2329;
+    margin: 0px;}
+.container {
+    background-color: #1c2329;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(5 1fr);
+    grid-template-rows: 40px 1fr 1fr 1fr;
+    gap: 5px;
+    padding: 10px;
+    box-sizing: border-box;}
+.container div {padding: 10px;}
+.header {
+    grid-column-start: 1;
+    grid-column-end: 5;}
+.main {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 5;}
+.accordion-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+    background: #333333;
+    color: #adb7bd}
+.accordion-button::after {
+    content: '\25be';
+    float: right;
+    transform: scale(1.5);}
+.accordion-button-active {
+    background-color: #0b0e11;}
+.accordion-button-active::after {
+    content: '\25b4';}
+.accordion-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s;
+    padding: 0 15px;
+    
+}
+/* .content-pregunta {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;}
+.content-side {
+    grid-column-start: 3;
+    grid-column-end: 5; } */
 .tg  {border-collapse:collapse;
 	border-color:#bbb;
     border-spacing:0;

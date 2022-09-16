@@ -3,47 +3,67 @@
 <head>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="script" href="script.js">
 <link rel="stylesheet" href="stylesheet.css">
 <title>Cálculo Diferencial e Integral</title>
 </head>
-<body>
-<h5>Para más información sobre el ejercicio <a target="_blank"; href="https://drive.google.com/file/d/1nFG1MMufWqmYAD4irxKF6TsrUCncJOrH/view?usp=sharing">Clickea aquí</a></h5>
-<p>Determinar el dominio de \(f(x)=\frac{x}{\ln(x^2)}\)</p>
-<table class="tg">
-<thead>
-  <tr>
-    <th class="tg-z0qj"></th>
-    <th class="tg-m0f0">\((-\infty, -1)\)</th>
-    <th class="tg-m0f0">\((-1, 0)\)</th>
-    <th class="tg-m0f0">\((0, 1)\)</th>
-    <th class="tg-m0f0">\((1, \infty)\)</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td class="tg-z0qj">\(x\)</td>
-    <td class="tg-4m9d">-</td>
-    <td class="tg-4vjy">-</td>
-    <td class="tg-4m9d">+</td>
-    <td class="tg-4vjy">+</td>
-  </tr>
-  <tr>
-    <td class="tg-z0qj">\(\ln(x^2)\)</td>
-    <td class="tg-4m9d">+</td>
-    <td class="tg-4vjy">-</td>
-    <td class="tg-4m9d">-</td>
-    <td class="tg-4vjy">+</td>
-  </tr>
-  <tr>
-    <td class="tg-z0qj">\(\frac{x}{\ln(x^2)}\)</td>
-    <td class="tg-4m9d">-</td>
-    <td class="tg-4vjy">+</td>
-    <td class="tg-4m9d">-</td>
-    <td class="tg-4vjy">+</td>
-  </tr>
-</tbody>
-</table>
-<br>
-<p>\(\therefore\) podemos decir que \(f(x) < 0 \iff x \in (-\infty,-1) \cup (0,1)\) y que \(f(x) > 0 \iff x \in (-1,0) \cup (1,\infty)\)</p>
-</body>
+<body><div class="container">  
+  <div class="header">
+    <h5>Para más información sobre el ejercicio <a target="_blank"; href="https://drive.google.com/file/d/1nFG1MMufWqmYAD4irxKF6TsrUCncJOrH/view?usp=sharing">Clickea aquí</a></h5>
+  </div>
+  <div class="main">
+    <div class="accordion">
+      <button type="button" class="accordion-button">Determinar el dominio de \(f(x)=\frac{x}{\ln(x^2)}\)</button>
+      <div class="accordion-content">
+        <p></p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button type="button" class="accordion-button">Determinar la paridad de \(f(x)\)</button>
+      <div class="accordion-content">
+        <p></p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button type="button" class="accordion-button">Determinar los signos de \(f(x)\)</button>
+      <div class="accordion-content">
+        <br><p><table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-z0qj"></th>
+              <th class="tg-m0f0">\((-\infty, -1)\)</th>
+              <th class="tg-m0f0">\((-1, 0)\)</th>
+              <th class="tg-m0f0">\((0, 1)\)</th>
+              <th class="tg-m0f0">\((1, \infty)\)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tg-z0qj">\(x\)</td>
+              <td class="tg-4m9d">-</td>
+              <td class="tg-4vjy">-</td>
+              <td class="tg-4m9d">+</td>
+              <td class="tg-4vjy">+</td>
+            </tr>
+            <tr>
+              <td class="tg-z0qj">\(\ln(x^2)\)</td>
+              <td class="tg-4m9d">+</td>
+              <td class="tg-4vjy">-</td>
+              <td class="tg-4m9d">-</td>
+              <td class="tg-4vjy">+</td>
+            </tr>
+            <tr>
+              <td class="tg-z0qj">\(\frac{x}{\ln(x^2)}\)</td>
+              <td class="tg-4m9d">-</td>
+              <td class="tg-4vjy">+</td>
+              <td class="tg-4m9d">-</td>
+              <td class="tg-4vjy">+</td>
+            </tr>
+          </tbody>
+          </table><br>
+          <p>\(\therefore\) podemos decir que \(f(x) < 0 \iff x \in (-\infty,-1) \cup (0,1)\) y que \(f(x) > 0 \iff x \in (-1,0) \cup (1,\infty)\)</p></p>
+      </div>
+    </div>
+  </div>
+</div></body>
 </html>
