@@ -34,23 +34,24 @@ body {background-color: #1c2329;
     margin: 0px;}
 .container {
     background-color: #1c2329;
+    display: contents;
     width: 100vw;
     height: 100vh;
-    display: grid;
+    /*display: grid;
     grid-template-columns: repeat(5 1fr);
-    grid-template-rows: 2.2rem 1fr 1fr 1fr;
+    grid-template-rows: 2.2rem 1fr 1fr 1fr; */
     gap: 0.7rem;
     padding: 1rem;
     box-sizing: border-box;}
 .container div {padding: 0.7rem;}
-.header {
+/* .header {
     grid-column-start: 1;
-    grid-column-end: 5;}
+    grid-column-end: 5;} 
 .main {
     grid-column-start: 1;
     grid-column-end: 5;
     grid-row-start: 2;
-    grid-row-end: 5;}
+    grid-row-end: 5;} */
 .accordion-button {
     display: block;
     width: 100%;
