@@ -54,9 +54,10 @@ body {background-color: #1c2329;
 .accordion-button {
     display: block;
     width: 100%;
-    padding: 1rem;
+    padding: 0.9rem;
     border: none;
     outline: none;
+    font-size: 1.1rem;
     text-align: left;
     cursor: pointer;
     transition: background 0.2s;
