@@ -1,3 +1,4 @@
+from re import A
 from lista import *
 from palabras import crearPalabra, PalabraRosco, crearRosco, mostrarRosco
 
@@ -43,19 +44,112 @@ Roscoej3 = lista(PRa, lista(PRe, lista(PRi, lista(PRo, lista(PRu, listaVacia))))
 
 
 # --------------------------------
-# Funciones que operan con listas
+# Funciones que operan con listas 
+
+
+# agregarAlPrincipio: lista any -> lista
+# Función:
+# Ej:
+def agregarAlPrincipio(L,e):
+    return None
+# Test:
+assert agregarAlPrincipio(lista(1, None), 0) == lista(0, lista(1, None))
+assert agregarAlPrincipio(lista('c', None), lista('a', lista('b', None))) == lista('a', lista('b', lista('c', None)))
+
+
+# agregarAlFinal: -> lista any -> lista
+# Función:
+# Ej:
+def agregarAlFinal(L,e):
+    return None
+# Test:
+assert agregarAlPrincipio(lista(0, None), 1) == lista(0, lista(1, None))
+assert agregarAlPrincipio(lista('a', lista('b', None)), 'c') == lista('a', lista('b', lista('c', None)))
+
+
 # --------------------------------
 
 
 
 # --------------------------------
 # Funciones que operan con Rosco(lista de PalabraRosco)
+
+
+# contarStatus: ->
+# Función:
+# Ej:
+def contarStatus(Lrosco, S):
+    return None
+# Test:
+assert
+
+
+# cambiarStatus: ->
+# Función:
+# Ej:
+def cambiarStatus(Lrosco, S):
+    return None
+# Test:
+assert
+
+
+# avanzar: ->
+# Función:
+# Ej:
+def avanzar(Lrosco):
+    return None
+# Test:
+assert
+
+
+# siguientePendiente: ->
+# Función:
+# Ej:
+def siguientePendiente(Lrosco):
+    return None
+# Test:
+assert
+
+
+# mostrarDefinicion: ->
+# Función:
+# Ej:
+def mostrarDefinicion(Lrosco):
+    return None
+# Test:
+assert
+
+
+# adivinar: ->
+# Función:
+# Ej:
+def adivinar(Lrosco, Palabra):
+    return None
+# Test:
+assert
+
+
 # --------------------------------
 
 
 
 # --------------------------------
 # Funciones Principales
+
+# iniciar: ->
+# Función:
+# Ej:
+def iniciar(dificultad):
+    return None
+
+
+# anyapalabra: ->
+# Función:
+# Ej:
+def anyapalabra(Lrosco):
+    return None
+
+
 # --------------------------------
 
 
