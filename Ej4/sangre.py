@@ -30,7 +30,7 @@ LS1 = lista(S1, lista(S2, lista(S3, lista(S4, lista(S5, \
 LS2 = lista(SS1, lista(SS2, lista(SS3, listaVacia)))
 
 
-# universal: lista -> int
+# universal: lista(Sangre) -> int
 # Función: dada una lista de Sangre, cuente cuanta sangre hay del tipo O con factor RH negativo
 # Ej: universal(LS1) y universal(LS2) han de retornar 2 y 0 respectivamente
 def universal(listaS):
@@ -52,7 +52,7 @@ def universal(listaS):
 assert universal(LS1) == 2
 assert universal(LS2) == 0
 
-# soloTipo: lista str -> lista 
+# soloTipo: lista(Sangre) str -> lista(Sangre) 
 # Función: dada una lista de Sangre y un tipo, entregar una lista que solo contenga Sangre del tipo indicado
 # Ej1: soloTipo(LS1, "AB") debería entregar una lista con Sangre de códigos 460 y 809
 # Ej2: soloTipo(LS1, "A") entrega una lista con Sangre de código 127
