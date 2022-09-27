@@ -47,24 +47,31 @@ Roscoej3 = lista(PRa, lista(PRe, lista(PRi, lista(PRo, lista(PRu, listaVacia))))
 # Funciones que operan con listas 
 
 
-# agregarAlPrincipio: lista any -> lista
+# agregarAlPrincipio: lista(any) any -> lista(any)
 # Función:
 # Ej:
-def agregarAlPrincipio(L,e):
-    return None
+def agregarAlPrincipio(L, e):
+    assert esLista(L)
+    return lista(e, L)
 # Test:
 assert agregarAlPrincipio(lista(1, None), 0) == lista(0, lista(1, None))
-assert agregarAlPrincipio(lista('c', None), lista('a', lista('b', None))) == lista('a', lista('b', lista('c', None)))
 
 
-# agregarAlFinal: -> lista any -> lista
+# agregarAlFinal: -> lista(any) any -> lista(any)
 # Función:
 # Ej:
 def agregarAlFinal(L,e):
-    return None
+    assert esLista(L)
+    if L == None:
+        return None
+    else:
+        if L.siguiente == None:
+                return 
+        else:
+            
+            
 # Test:
-assert agregarAlPrincipio(lista(0, None), 1) == lista(0, lista(1, None))
-assert agregarAlPrincipio(lista('a', lista('b', None)), 'c') == lista('a', lista('b', lista('c', None)))
+assert agregarAlFinal(lista(0, None), 1) == lista(0, lista(1, None))
 
 
 # --------------------------------
@@ -75,13 +82,20 @@ assert agregarAlPrincipio(lista('a', lista('b', None)), 'c') == lista('a', lista
 # Funciones que operan con Rosco(lista de PalabraRosco)
 
 
-# contarStatus: ->
+# contarStatus: lista(PalabraRosco) str -> int
 # Función:
 # Ej:
 def contarStatus(Lrosco, S):
-    return None
+    if Lrosco == None:
+        return 0
+    else:
+        rosco = cabeza(Lrosco)
+        if rosco.status == S:
+            return 1 + contarStatus(cola(Lrosco))
+        else: 
+            return contarStatus(cola(Lrosco))
 # Test:
-assert
+assert contarStatus(Roscoej3, "pendiente") == 3
 
 
 # cambiarStatus: ->
