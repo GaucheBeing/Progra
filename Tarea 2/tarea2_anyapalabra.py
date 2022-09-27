@@ -63,13 +63,9 @@ assert agregarAlPrincipio(lista(1, None), 0) == lista(0, lista(1, None))
 def agregarAlFinal(L,e):
     assert esLista(L)
     if L == None:
-        return None
+        return agregarAlPrincipio(L, e)
     else:
-        if L.siguiente == None:
-                return 
-        else:
-            
-            
+        return lista(cabeza(L), agregarAlFinal(cola(L), e))        
 # Test:
 assert agregarAlFinal(lista(0, None), 1) == lista(0, lista(1, None))
 
