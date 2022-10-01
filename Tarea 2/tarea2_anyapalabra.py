@@ -79,14 +79,14 @@ assert agregarAlFinal(lista(0, None), 1) == lista(0, lista(1, None))
 
 
 # contarStatus: lista(PalabraRosco) str -> int
-# Función:
+# Función: dado un rosco, contar cuantas PalabraRosco poseen atributo status S
 # Ej:
 def contarStatus(Lrosco, S):
     if Lrosco == None:
         return 0
     else:
-        rosco = cabeza(Lrosco)
-        if rosco.status == S:
+        Prosco = cabeza(Lrosco)
+        if Prosco.status == S:
             return 1 + contarStatus(cola(Lrosco))
         else: 
             return contarStatus(cola(Lrosco))
@@ -94,10 +94,18 @@ def contarStatus(Lrosco, S):
 assert contarStatus(Roscoej3, "pendiente") == 3
 
 
-# cambiarStatus: ->
-# Función:
+# cambiarStatus: lista(PalabraRosco) str -> lista(PalabraRosco)
+# Función: dado un rosco
 # Ej:
 def cambiarStatus(Lrosco, S):
+    if Lrosco == None:
+        return None
+    else:
+       Prosco = cabeza(Lrosco)
+       if Prosco.status == S:
+           return Lrosco
+       else:
+           return 
     return None
 # Test:
 assert
