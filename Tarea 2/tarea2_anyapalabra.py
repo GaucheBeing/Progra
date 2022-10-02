@@ -1,6 +1,7 @@
 from re import A
+
 from lista import *
-from palabras import crearPalabra, PalabraRosco, crearRosco, mostrarRosco
+from palabras import crearPalabra, PalabraRosco, crearRosco, mostrarRosco, esPalabraRosco
 
 # definicion strings con todas las letras, para usar en la función iniciar
 Lletras = "ABCDEFGHIJLMNOPQRSTUVXYZ"
@@ -48,8 +49,8 @@ Roscoej3 = lista(PRa, lista(PRe, lista(PRi, lista(PRo, lista(PRu, listaVacia))))
 
 
 # agregarAlPrincipio: lista(any) any -> lista(any)
-# Función:
-# Ej:
+# Función: dada una lista, agrega un elemento dado al principio de ella
+# Ej: agregarAlPrincipio(lista(1, None), 0) entrega lista(0, lista(1, None))
 def agregarAlPrincipio(L, e):
     assert esLista(L)
     return lista(e, L)
@@ -57,9 +58,9 @@ def agregarAlPrincipio(L, e):
 assert agregarAlPrincipio(lista(1, None), 0) == lista(0, lista(1, None))
 
 
-# agregarAlFinal: -> lista(any) any -> lista(any)
-# Función:
-# Ej:
+# agregarAlFinal: lista(any) any -> lista(any)
+# Función: dada una lista, agrega un elemento dado al final de ella
+# Ej: agregarAlFinal(lista(0, None), 1) retorna lista(0, lista(1, None))
 def agregarAlFinal(L,e):
     assert esLista(L)
     if L == None:
@@ -79,61 +80,81 @@ assert agregarAlFinal(lista(0, None), 1) == lista(0, lista(1, None))
 
 
 # contarStatus: lista(PalabraRosco) str -> int
-# Función: dado un rosco, contar cuantas PalabraRosco poseen atributo status S
-# Ej:
+# Función: dado un rosco y estado, contar cuantas PalabraRosco poseen su atributo status el estado S
+# Ej: contarStatus(Roscoej1, "pendiente") debería contar 1
 def contarStatus(Lrosco, S):
-    if Lrosco == None:
-        return 0
-    else:
-        Prosco = cabeza(Lrosco)
-        if Prosco.status == S:
-            return 1 + contarStatus(cola(Lrosco))
-        else: 
-            return contarStatus(cola(Lrosco))
+    assert esLista(Lrosco)
+    assert type(S) == str
+    def _contarStatus(LR, S):
+        # guardar 1er elemento del rosco y chequear si es de tipo PalabraRosco o es la listaVacia
+        PR = cabeza(LR)
+        assert esPalabraRosco(PR) or cabeza(PR) == None
+        # sumar el neutro si el elemento en revisión corresponde a la listaVacia 
+        if LR == None:
+            return 0
+        # chequear si el atributo *status* del elemento en revisión es S, si lo es, suma 1 y pasa al siguiente, si no, pasa al siguiente
+        else:
+            if PR.status == S:
+                return 1 + _contarStatus(cola(LR), S)
+            else: 
+                return _contarStatus(cola(LR), S)
+    return _contarStatus(Lrosco, S)
 # Test:
+assert contarStatus(Roscoej1, "pendiente") == 1
+assert contarStatus(Roscoej2, "pendiente") == 2
 assert contarStatus(Roscoej3, "pendiente") == 3
 
 
 # cambiarStatus: lista(PalabraRosco) str -> lista(PalabraRosco)
-# Función: dado un rosco
-# Ej:
+# Función: dado un rosco y un estado, entrega un rosco tal que el status del primer elemento ha cambiado al estado S entregado
+# Ej: cambiarStatus(Roscoej1, 'mitochondria is...') entrega lista(PalabraRosco('A', 'aceptable', 'Que se puede aceptar', 'mitochondria is...'), cola(Roscoej1))
 def cambiarStatus(Lrosco, S):
-    if Lrosco == None:
-        return None
-    else:
-       Prosco = cabeza(Lrosco)
-       if Prosco.status == S:
-           return Lrosco
-       else:
-           return 
-    return None
+    assert esLista(Lrosco)
+    assert type(S) == str
+    def _cambiarStatus(LR, S):
+        if LR == None:
+            return None
+        else:
+            PR = cabeza(LR)
+            if PR.status == S:
+                return LR
+            else:
+                newPR = PalabraRosco(PR.letra, PR.palabra, PR.definicion, S)
+                return agregarAlPrincipio(cola(LR), newPR)
+    return _cambiarStatus(Lrosco, S)
 # Test:
-assert
+assert cambiarStatus(Roscoej1, 'mitochondria is...') == \
+        lista(PalabraRosco('A', 'aceptable', 'Que se puede aceptar', 'mitochondria is...'), lista(PRb, lista(PRc, None)))
+assert cambiarStatus(Roscoej2, 'the powerhouse of the cell!') == \
+        lista(PalabraRosco('S', 'sol', 'Estrella con luz propia alrededor de la cual gira la Tierra', 'the powerhouse of the cell!'), \
+        lista(PRt, lista(PRp, lista(PRq, lista(PRr, None)))))
 
 
-# avanzar: ->
-# Función:
+# avanzar: lista(PalabraRosco) -> lista(PalabraRosco)
+# Función: dado un rosco, entrega el rosco avanzado a la siguiente PalabraRosco en la lista
 # Ej:
 def avanzar(Lrosco):
-    return None
+    return agregarAlFinal(cola(Lrosco), cabeza(Lrosco))
 # Test:
-assert
+assert avanzar(Roscoej1) == lista(PRb, lista(PRc, lista(PRa, listaVacia)))
 
 
-# siguientePendiente: ->
+# siguientePendiente: lista(PalabraRosco) -> lista(PalabraRosco)
 # Función:
 # Ej:
 def siguientePendiente(Lrosco):
-    return None
+    
 # Test:
 assert
 
 
-# mostrarDefinicion: ->
+# mostrarDefinicion: lista(PalabraRosco) -> str
 # Función:
 # Ej:
 def mostrarDefinicion(Lrosco):
-    return None
+    assert esLista(Lrosco)
+    PR = cabeza(Lrosco)
+    return print(f"Comienza con {PR.letra}: {PR.definicion}")
 # Test:
 assert
 
