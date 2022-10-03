@@ -1,5 +1,10 @@
 import estructura
 from lista import *
+<<<<<<< HEAD:Ej4-5/sangrefuncional.py
+=======
+from absfun import *
+
+>>>>>>> 7ee5b552af86cbf5bcb2a6a996d14819913b94a3:Ej4/sangrefuncional.py
 
 # deficion estructura sangre
 # Sangre: cod(int) tipo(str) rh(str)
@@ -18,8 +23,13 @@ S9 = Sangre(648, 'B', '-')
 S0 = Sangre(207, 'O', '-')
 
 SS1 = Sangre(839, 'O', '+')
+<<<<<<< HEAD:Ej4-5/sangrefuncional.py
 SS2 = Sangre(308, 'AB', '+')
 SS3 = Sangre(124, 'B', '+')
+=======
+SS2 = Sangre(308, 'AB', '-')
+SS3 = Sangre(124, 'B', '-')
+>>>>>>> 7ee5b552af86cbf5bcb2a6a996d14819913b94a3:Ej4/sangrefuncional.py
 
 # definicion de listas de sangre de ejemplo
 LS1 = lista(S1, lista(S2, lista(S3, lista(S4, lista(S5, \
@@ -27,6 +37,7 @@ LS1 = lista(S1, lista(S2, lista(S3, lista(S4, lista(S5, \
 
 LS2 = lista(SS1, lista(SS2, lista(SS3, listaVacia)))
 
+<<<<<<< HEAD:Ej4-5/sangrefuncional.py
 def reductor(fun, L):
        assert esLista(L)
 
@@ -76,3 +87,6 @@ def soloTipo(LS, t):
 assert soloTipo(LS1, "AB") == lista(Sangre(460, 'AB', '-') , lista(Sangre(809, 'AB', '+'), None))
 assert soloTipo(LS1, "A") == lista(Sangre(127, 'A', '+'), None)
 assert soloTipo(LS2, "A") == None
+=======
+def
+>>>>>>> 7ee5b552af86cbf5bcb2a6a996d14819913b94a3:Ej4/sangrefuncional.py
