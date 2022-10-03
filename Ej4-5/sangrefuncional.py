@@ -1,10 +1,6 @@
 import estructura
 from lista import *
-<<<<<<< HEAD:Ej4-5/sangrefuncional.py
-=======
 from absfun import *
-
->>>>>>> 7ee5b552af86cbf5bcb2a6a996d14819913b94a3:Ej4/sangrefuncional.py
 
 # deficion estructura sangre
 # Sangre: cod(int) tipo(str) rh(str)
@@ -23,13 +19,8 @@ S9 = Sangre(648, 'B', '-')
 S0 = Sangre(207, 'O', '-')
 
 SS1 = Sangre(839, 'O', '+')
-<<<<<<< HEAD:Ej4-5/sangrefuncional.py
-SS2 = Sangre(308, 'AB', '+')
-SS3 = Sangre(124, 'B', '+')
-=======
 SS2 = Sangre(308, 'AB', '-')
 SS3 = Sangre(124, 'B', '-')
->>>>>>> 7ee5b552af86cbf5bcb2a6a996d14819913b94a3:Ej4/sangrefuncional.py
 
 # definicion de listas de sangre de ejemplo
 LS1 = lista(S1, lista(S2, lista(S3, lista(S4, lista(S5, \
@@ -37,39 +28,13 @@ LS1 = lista(S1, lista(S2, lista(S3, lista(S4, lista(S5, \
 
 LS2 = lista(SS1, lista(SS2, lista(SS3, listaVacia)))
 
-<<<<<<< HEAD:Ej4-5/sangrefuncional.py
-def reductor(fun, L):
-       assert esLista(L)
-
-def filtro(fun, L):
-       assert esLista(L)
-
-def mapa(fun, L):
-       assert esLista(L)
-# mapa: (any->any) lista(any) -> lista(any)
-# entrega una lista sobre la cual se aplicó una operación
-# a sus elementos
-def mapa(fun, L):
-       assert esLista(L)
-       if L == listaVacia:
-              return listaVacia
-       actual = cabeza(L)
-       # La función de operación, determina que operación hay que aplicar al elemento en la lista
-       nuevo = fun(actual)
-       return lista(nuevo, mapa(fun, cola(L)))
-
-
-
-
-
-
 # universal: lista(Sangre) -> int
 # Función: dada una lista de Sangre, cuente cuanta sangre hay del tipo O con factor RH negativo
 # Ej: universal(LS1) y universal(LS2) han de retornar 2 y 0 respectivamente
 def universal(LS):
-       assert esLista(listaS)
-       contador = lambda 
-       return reductor(contador, LS, 0)
+       assert esLista(LS)
+       newLS = filtro(lambda x: x.tipo == 'O' and x.rh == '-', LS)
+       return largo(newLS)
 # Test:
 assert universal(LS1) == 2
 assert universal(LS2) == 0
@@ -82,11 +47,24 @@ assert universal(LS2) == 0
 def soloTipo(LS, t):
        assert esLista(LS) and type(t) == str
        assert t in ['A','B','AB', 'O'],          "Sólo puedes escoger entre tipos A, B, AB u O de sangre"
-       return 
+       return filtro(lambda x: x.tipo == t, LS)
 # Test:
 assert soloTipo(LS1, "AB") == lista(Sangre(460, 'AB', '-') , lista(Sangre(809, 'AB', '+'), None))
 assert soloTipo(LS1, "A") == lista(Sangre(127, 'A', '+'), None)
 assert soloTipo(LS2, "A") == None
-=======
-def
->>>>>>> 7ee5b552af86cbf5bcb2a6a996d14819913b94a3:Ej4/sangrefuncional.py
+
+# RHmas: lista(Sangre) -> lista(Sangre)
+# Función: dada una lista de sangre, se entrega la lista de todas las sangres volviendolas factor RH +
+# Ej1: 
+def RHmas(LS):
+       assert esLista(LS)
+       return mapa(lambda x: Sangre(x.cod, x.tipo, '+'), LS)
+# Test:
+assert RHmas(LS2) == lista(Sangre(839, 'O', '+'), lista(Sangre(308, 'AB', '+'), \
+       lista(Sangre(124, 'B', '+'), listaVacia)))
+
+assert RHmas(LS1) == lista(Sangre(127, 'A', '+'), lista(Sangre(510, 'B', '+'), \
+       lista(Sangre(460, 'AB', '+'), lista(Sangre(637, 'B', '+'), \
+       lista(Sangre(174, 'B', '+'), lista(Sangre(809, 'AB', '+'), \
+       lista(Sangre(331, 'B', '+'), lista(Sangre(803, 'O', '+'), \
+       lista(Sangre(648, 'B', '+'), lista(Sangre(207, 'O', '+'), listaVacia))))))))))
