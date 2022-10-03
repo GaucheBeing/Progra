@@ -1,4 +1,3 @@
-from re import S
 import estructura
 from lista import *
 

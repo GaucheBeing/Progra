@@ -178,7 +178,7 @@ def mostrarDefinicion(Lrosco):
 def adivinar(Lrosco, Palabra):
     assert esLista(Lrosco)
     assert type(Palabra) == str
-    # hago uso de la función lower para prevenir casos que sí hubiesen sido admisibles pero no por la comparación case sensitive de strings
+    # hacemos uso de la función lower para prevenir casos que sí hubiesen sido admisibles pero no por la comparación case sensitive de strings
     if cabeza(Lrosco).palabra == Palabra.lower():
         return True
     else:
@@ -198,7 +198,7 @@ assert adivinar(Roscoej1, 'AcEpTaBlE') == True == adivinar(Roscoej1, 'aceptable'
 # Función:
 # Ej:
 def iniciar(dificultad):
-    return 1
+    return 
 
 
 # anyapalabra: ->
@@ -208,6 +208,5 @@ def anyapalabra(Lrosco):
     if siguientePendiente == False:
         print(f"Wena, ganaste humanx")
     
-
 
 # --------------------------------
