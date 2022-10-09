@@ -193,7 +193,8 @@ assert adivinar(Roscoej1, 'AcEpTaBlE') == True == adivinar(Roscoej1, 'aceptable'
 
 # iniciar: str -> None
 # Función: determinar la dificultad del juego
-# Ej: iniciar("facil") inicia el juego con un rosco de letras "AEIOU"                           def iniciar(dificultad):
+# Ej: iniciar("facil") inicia el juego con un rosco de letras "AEIOU"                           
+def iniciar(dificultad):
     assert type(dificultad) == str
 
     print("Ayudemos a Anya a jugar el Rosco de Pasapalabra!")
