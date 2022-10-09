@@ -55,7 +55,7 @@ assert soloTipo(LS2, "A") == None
 
 # RHmas: lista(Sangre) -> lista(Sangre)
 # Función: dada una lista de sangre, se entrega la lista de todas las sangres volviendolas factor RH +
-# Ej1: 
+# Ej1: RHmas(LS2) => lista(Sangre(839, 'O', '+'), lista(Sangre(308, 'AB', '+'), lista(Sangre(124, 'B', '+'), listaVacia)))
 def RHmas(LS):
        assert esLista(LS)
        return mapa(lambda x: Sangre(x.cod, x.tipo, '+'), LS)
