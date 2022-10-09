@@ -189,24 +189,56 @@ assert adivinar(Roscoej1, 'AcEpTaBlE') == True == adivinar(Roscoej1, 'aceptable'
 
 
 # --------------------------------
-
-
-# --------------------------------
 # Funciones Principales
 
-# iniciar: ->
-# Función:
-# Ej:
-def iniciar(dificultad):
-    return 
+# iniciar: str -> None
+# Función: determinar la dificultad del juego
+# Ej: iniciar("facil") inicia el juego con un rosco de letras "AEIOU"                           def iniciar(dificultad):
+    assert type(dificultad) == str
 
+    print("Ayudemos a Anya a jugar el Rosco de Pasapalabra!")
+    if dificultad.lower() == "facil":
+        rosco = crearRosco(Lchica)
+    elif dificultad.lower() == "dificil":                                                               rosco = crearRosco(Lletras)
+    else:
+        print(f"Sólo puedes escoger dificultades \x1B[3m facil\x1B[0m o \x1B[3m dificil\x1B[0m")
+        return None
+    return anyapalabra(rosco)
 
-# anyapalabra: ->
-# Función:
-# Ej:
-def anyapalabra(Lrosco):
-    if siguientePendiente == False:
-        print(f"Wena, ganaste humanx")
-    
+# anyapalabra: lista(PalabraRosco) -> None
+# Función: inicia el juego PasaPalabra
+def anyapalabra(LR):
+    assert esLista(LR)
+    print("\n")
+    mostrarRosco(LR)
+    mostrarDefinicion(LR)
+
+    palabra = input("Respuesta: ")
+
+    if palabra == "pasapalabra":
+        siguiente = siguientePendiente(LR)
+        return anyapalabra(siguiente)
+
+    if adivinar(LR, palabra):
+        LR = cambiarStatus(LR,"correcta")
+        print("Correcto!")
+
+    if not adivinar(LR,palabra):
+        LR = cambiarStatus(LR,"incorrecta")
+        palabra = cabeza(LR).palabra
+        print(f"incorrecto! la palabra correcta es {palabra}")
+
+    if palabra != "pasapalabra":
+
+        cp = contarStatus(LR,"pendiente")
+        cc = contarStatus(LR,"correcta")
+        ci = contarStatus(LR,"incorrecta")
+
+        if cp == 0:
+            print(f"\n La cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
+        else:
+            siguiente = siguientePendiente(LR)
+            return anyapalabra(siguiente)
+
 
 # --------------------------------
