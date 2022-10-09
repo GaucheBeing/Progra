@@ -200,7 +200,8 @@ def iniciar(dificultad):
     print("Ayudemos a Anya a jugar el Rosco de Pasapalabra!")
     if dificultad.lower() == "facil":
         rosco = crearRosco(Lchica)
-    elif dificultad.lower() == "dificil":                                                               rosco = crearRosco(Lletras)
+    elif dificultad.lower() == "dificil":                                                               
+        rosco = crearRosco(Lletras)
     else:
         print(f"Sólo puedes escoger dificultades \x1B[3m facil\x1B[0m o \x1B[3m dificil\x1B[0m")
         return None
