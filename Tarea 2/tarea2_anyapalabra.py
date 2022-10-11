@@ -155,7 +155,7 @@ def siguientePendiente(Lrosco):
                     return siguienteStatus(avanzar(LR), S)
         else:
             return False
-    return siguienteStatus(Lrosco, 'pendiente')
+    return siguienteStatus(avanzar(Lrosco), 'pendiente')
 # Test:
 assert siguientePendiente(Roscoej1) == Roscoej1
 assert siguientePendiente(lista(PRc, lista(PRa, lista(PRb, None)))) == lista(PRa, lista(PRb, lista(PRc, None)))
