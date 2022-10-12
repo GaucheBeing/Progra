@@ -103,8 +103,8 @@ assert contarStatus(Roscoej3, "pendiente") == 3
 
 # cambiarStatus: lista(PalabraRosco) str -> lista(PalabraRosco)
 # Función: dado un rosco y un estado, entrega un rosco tal que el status del primer elemento ha cambiado al estado S entregado
-# Ej: cambiarStatus(Roscoej1, 'mitochondria is...') entrega lista(PalabraRosco('A', 'aceptable', 'Que se puede aceptar', \
-#                                                                              'mitochondria is...'), cola(Roscoej1))
+# Ej: cambiarStatus(Roscoej1, 'mitochondria is...') => lista(PalabraRosco('A', 'aceptable', 'Que se puede aceptar', \
+#                                                                         'mitochondria is...'), cola(Roscoej1))
 def cambiarStatus(Lrosco, S):
     assert esLista(Lrosco)
     assert type(S) == str
@@ -129,16 +129,16 @@ assert cambiarStatus(Roscoej2, 'the powerhouse of the cell!') == \
 
 # avanzar: lista(PalabraRosco) -> lista(PalabraRosco)
 # Función: dado un rosco, entrega el rosco avanzado a la siguiente PalabraRosco en la lista
-# Ej:
+# Ej: avanzar(Roscoej1) => lista(PRb, lista(PRc, lista(PRa, None)))
 def avanzar(Lrosco):
     return agregarAlFinal(cola(Lrosco), cabeza(Lrosco))
 # Test:
-assert avanzar(Roscoej1) == lista(PRb, lista(PRc, lista(PRa, listaVacia)))
-assert avanzar(Roscoej2) == lista(PRt, lista(PRp, lista(PRq, lista(PRr, lista(PRs, listaVacia)))))
+assert avanzar(Roscoej1) == lista(PRb, lista(PRc, lista(PRa, None)))
+assert avanzar(Roscoej2) == lista(PRt, lista(PRp, lista(PRq, lista(PRr, lista(PRs, None)))))
 
 # siguientePendiente: lista(PalabraRosco) -> lista(PalabraRosco) | bool
 # Función: dado un rosco, entrega el rosco avanzado hasta llegar a la siguiente palabra pendiente
-# Ej:
+# Ej: siguientePendiente(Roscoej1) => Roscoej1
 def siguientePendiente(Lrosco):
     def siguienteStatus(LR, S):
         # chequear la existencia de al menos 1 elemento del rosco tal que tenga estado S
@@ -197,13 +197,14 @@ assert adivinar(Roscoej1, 'AcEpTaBlE') == True == adivinar(Roscoej1, 'aceptable'
 def iniciar(dificultad):
     assert type(dificultad) == str
 
-    print("Ayudemos a Anya a jugar el Rosco de Pasapalabra!")
+    print(f"Hola mortal! Ayudemos a Anya a jugar el Rosco de Pasapalabra!")
+    print(f"Cuando quieras pasar de palabra escribe \x1B[3mpasapalabra\x1B[0m y para terminar el juego en cualquier instante \x1B[3msalir()\x1B[0m")
     if dificultad.lower() == "facil":
         rosco = crearRosco(Lchica)
     elif dificultad.lower() == "dificil":                                                               
         rosco = crearRosco(Lletras)
     else:
-        print(f"Sólo puedes escoger dificultades \x1B[3m facil\x1B[0m o \x1B[3m dificil\x1B[0m")
+        print(f"Sólo puedes escoger dificultades \x1B[3mfacil\x1B[0m o \x1B[3mdificil\x1B[0m")
         return None
     return anyapalabra(rosco)
 
@@ -217,6 +218,19 @@ def anyapalabra(LR):
 
     palabra = input("Respuesta: ")
 
+    # chequear antes que todo si la persona quiere escapar del juego
+    if palabra == "salir()":
+        quit = input("¿De verdad quieres salir mortal?: ").lower()
+        # usamos in para no tener que poner cond1 or cond2 ... or cond_n multiples veces
+        if quit in ['si', 's', 'yes', 'y']:
+            return None
+        elif quit in ['no', 'n', 'not']:
+            print("\n Sigamos jugando mortal! \n")
+            return anyapalabra(LR)
+        else:
+            print("\n Asumiré que no quieres seguir pequeño mortal, hasta la próxima \n ^-^")
+            return None
+    # chequear si la persona quiere dejar en estado pendiente su actual palabra y avanzar el rosco
     if palabra == "pasapalabra":
         siguiente = siguientePendiente(LR)
         return anyapalabra(siguiente)
@@ -224,23 +238,30 @@ def anyapalabra(LR):
     if adivinar(LR, palabra):
         LR = cambiarStatus(LR,"correcta")
         print("Correcto!")
-
     if not adivinar(LR,palabra):
         LR = cambiarStatus(LR,"incorrecta")
         palabra = cabeza(LR).palabra
-        print(f"incorrecto! la palabra correcta es {palabra}")
+        print(f"incorrecto! la palabra correcta es \033[1m{palabra}\033[0m:")
 
-    if palabra != "pasapalabra":
+    cc = contarStatus(LR,"correcta")
+    ci = contarStatus(LR,"incorrecta")
+    cp = contarStatus(LR,"pendiente")
 
-        cp = contarStatus(LR,"pendiente")
-        cc = contarStatus(LR,"correcta")
-        ci = contarStatus(LR,"incorrecta")
-
-        if cp == 0:
-            print(f"\n La cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
+    if cc == largo(LR):
+        print("\nMega Chad!")
+        return None
+    elif ci == largo(LR):
+        print("\nMega dou :'c \n intenta otra vez <3")
+        return None
+    elif cp == 0:
+        print(f"\nLa cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
+        if cc > ci:
+            print('Huh, ni tan mal humanx!')
         else:
-            siguiente = siguientePendiente(LR)
-            return anyapalabra(siguiente)
+            print("Ponle ganas mortal :c, no te rindas e intenta otra vez! ^-^")
+    else:
+        siguiente = siguientePendiente(LR)
+        return anyapalabra(siguiente)
 
 
 # --------------------------------
