@@ -219,7 +219,7 @@ def anyapalabra(LR):
     palabra = input("Respuesta: ")
 
     # chequear antes que todo si la persona quiere escapar del juego
-    if palabra == "salir()":
+    if palabra.lower() == "salir()":
         quit = input("¿De verdad quieres salir mortal?: ").lower()
         # usamos in para no tener que poner cond1 or cond2 ... or cond_n multiples veces
         if quit in ['si', 's', 'yes', 'y']:
@@ -231,7 +231,7 @@ def anyapalabra(LR):
             print("\n Asumiré que no quieres seguir pequeño mortal, hasta la próxima \n ^-^")
             return None
     # chequear si la persona quiere dejar en estado pendiente su actual palabra y avanzar el rosco
-    if palabra == "pasapalabra":
+    if palabra.lower() == "pasapalabra":
         siguiente = siguientePendiente(LR)
         return anyapalabra(siguiente)
 
