@@ -101,7 +101,7 @@ assert contarStatus(Roscoej2, "pendiente") == 2
 assert contarStatus(Roscoej3, "pendiente") == 3
 
 
-# cambiarStatus: lista(PalabraRosco) str -> lista(PalabraRosco)
+# cambiarStatus: lista(PalabraRosco) str -> None | lista(PalabraRosco)
 # Función: dado un rosco y un estado, entrega un rosco tal que el status del primer elemento ha cambiado al estado S entregado
 # Ej: cambiarStatus(Roscoej1, 'mitochondria is...') => lista(PalabraRosco('A', 'aceptable', 'Que se puede aceptar', \
 #                                                                         'mitochondria is...'), cola(Roscoej1))
@@ -136,10 +136,12 @@ def avanzar(Lrosco):
 assert avanzar(Roscoej1) == lista(PRb, lista(PRc, lista(PRa, None)))
 assert avanzar(Roscoej2) == lista(PRt, lista(PRp, lista(PRq, lista(PRr, lista(PRs, None)))))
 
-# siguientePendiente: lista(PalabraRosco) -> lista(PalabraRosco) | bool
+
+# siguientePendiente: lista(PalabraRosco) -> lista(PalabraRosco) | None
 # Función: dado un rosco, entrega el rosco avanzado hasta llegar a la siguiente palabra pendiente
 # Ej: siguientePendiente(Roscoej1) => Roscoej1
 def siguientePendiente(Lrosco):
+    assert esLista(Lrosco)
     def siguienteStatus(LR, S):
         # chequear la existencia de al menos 1 elemento del rosco tal que tenga estado S
         # en tal caso por recursión llegar hasta ese elemento y hacer un rosco con este en cabeza
@@ -154,12 +156,12 @@ def siguientePendiente(Lrosco):
                 else:
                     return siguienteStatus(avanzar(LR), S)
         else:
-            return False
+            return None
     return siguienteStatus(avanzar(Lrosco), 'pendiente')
 # Test:
 assert siguientePendiente(Roscoej1) == Roscoej1
 assert siguientePendiente(lista(PRc, lista(PRa, lista(PRb, None)))) == lista(PRa, lista(PRb, lista(PRc, None)))
-assert siguientePendiente(lista(PRb, lista(PRc, None))) == False
+assert siguientePendiente(lista(PRb, lista(PRc, None))) == None
 
 
 # mostrarDefinicion: lista(PalabraRosco) -> None
@@ -178,11 +180,15 @@ def mostrarDefinicion(Lrosco):
 def adivinar(Lrosco, Palabra):
     assert esLista(Lrosco)
     assert type(Palabra) == str
-    # hacemos uso de la función lower para prevenir casos que sí hubiesen sido admisibles pero no por la comparación case sensitive de strings
-    if cabeza(Lrosco).palabra == Palabra.lower():
-        return True
-    else:
+
+    if Lrosco == None:
         return False
+    else:
+        # haremos uso de la función lower para prevenir casos que sí hubiesen sido admisibles pero no por la comparación case sensitive de strings
+        if cabeza(Lrosco).palabra == Palabra.lower():
+            return True
+        else:
+            return False
 # Test:
 assert adivinar(Roscoej1, 'australopithecus') == False
 assert adivinar(Roscoej1, 'AcEpTaBlE') == True == adivinar(Roscoej1, 'aceptable')
@@ -216,7 +222,7 @@ def anyapalabra(LR):
     mostrarRosco(LR)
     mostrarDefinicion(LR)
 
-    palabra = input("Respuesta: ")
+    palabra = input("Respuesta: ").lower()
 
     # chequear antes que todo si la persona quiere escapar del juego
     if palabra == "salir()":
@@ -243,22 +249,23 @@ def anyapalabra(LR):
         palabra = cabeza(LR).palabra
         print(f"incorrecto! la palabra correcta es \033[1m{palabra}\033[0m:")
 
-    cc = contarStatus(LR,"correcta")
-    ci = contarStatus(LR,"incorrecta")
-    cp = contarStatus(LR,"pendiente")
+    cantCorrect = contarStatus(LR,"correcta")
+    cantIncorrect = contarStatus(LR,"incorrecta")
+    cantPendiente = contarStatus(LR,"pendiente")
 
-    if cc == largo(LR):
+    # queríamos poner mensajitos extra dependiendo del puntaje de la persona
+    if cantCorrect == largo(LR):
         print("\nMega Chad!")
         return None
-    elif ci == largo(LR):
-        print("\nMega dou :'c \n intenta otra vez <3")
+    elif cantIncorrect == largo(LR):
+        print("Ponle ganas mortal :c, no te rindas e intenta otra vez! ^-^")
         return None
-    elif cp == 0:
+    elif cantPendiente == 0:
         print(f"\nLa cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
-        if cc > ci:
+        if cantCorrect > cantIncorrect + 1:
             print('Huh, ni tan mal humanx!')
         else:
-            print("Ponle ganas mortal :c, no te rindas e intenta otra vez! ^-^")
+            print("\nMega dou :'c \n intenta otra vez <3")
     else:
         siguiente = siguientePendiente(LR)
         return anyapalabra(siguiente)
