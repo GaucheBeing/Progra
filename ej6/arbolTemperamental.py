@@ -28,16 +28,16 @@ AB3 = AB(50,
 # validarTemperamento: AB -> bool
 # Función: dado un árbol (binario) validar si este es temperamental o no
 # Ej: validarTemperamento(ABT1) => True y para ABT2 también excepto para AB3  
-
 def validarTemperamento(A):
     assert esAB(A)
+    # caso base árbol vacío
     if A == None:
         return True
     else:
-        # caso None
+        # caso base nodo None
         if A.valor == None:
             return True
-        # caso hoja
+        # caso base hoja
         elif A.izq == None == A.der:
             return True
         # caso 1 rama izq
@@ -67,6 +67,7 @@ def validarTemperamento(A):
 #        elif A.izq.valor < A.valor and A.der.valor < A.valor:
 #            return validarTemperamento(A.izq) and validarTemperamento(A.der)
 #        else: return False
+
 # Testing
 assert validarTemperamento(ABT1)
 assert validarTemperamento(ABT2)
