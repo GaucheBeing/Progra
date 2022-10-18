@@ -30,45 +30,43 @@ AB3 = AB(50,
 # Ej: validarTemperamento(ABT1) => True y para ABT2 también excepto para AB3  
 def validarTemperamento(A):
     assert esAB(A)
-    # caso base árbol vacío
+    # caso base de las bases árbol vacío
     if A == None:
         return True
-    else:
-        # caso base nodo None
-        if A.valor == None:
-            return True
-        # caso base hoja
-        elif A.izq == None == A.der:
-            return True
-        # caso 1 rama izq
-        elif A.izq.valor < A.valor and A.der == None:
-            return validarTemperamento(A.izq)
-        # caso 1 rama der
-        elif A.izq == None and A.der.valor < A.valor:
-            return validarTemperamento(A.der)
-        # caso nodo ambas ramas
-        if A.izq.valor < A.valor and A.der.valor < A.valor:
-            return validarTemperamento(A.izq) and validarTemperamento(A.der)
-        else: return False
-
-#        if A.valor == None
-#            return True
-#        elif A.izq == None:
-#            if A.der == None:
-#                return True
-#            else:
-#                if A.der.valor < A.valor:
-#                    return validarTemperamento(A.der)
-#                else: return False
-#        elif A.der == None:
-#            if A.izq.valor < A.valor:
-#                return validarTemperamento(A.izq)
-#            else: return False
-#        elif A.izq.valor < A.valor and A.der.valor < A.valor:
-#            return validarTemperamento(A.izq) and validarTemperamento(A.der)
-#        else: return False
-
+    # caso base hoja
+    elif A.izq == None == A.der:
+        return True
+    # caso 1 rama izq
+    elif A.izq.valor < A.valor and A.der == None:
+        return validarTemperamento(A.izq)
+    # caso 1 rama der
+    elif A.izq == None and A.der.valor < A.valor:
+        return validarTemperamento(A.der)
+    # caso nodo ambas ramas
+    elif A.izq.valor < A.valor and A.der.valor < A.valor:
+        return validarTemperamento(A.izq) and validarTemperamento(A.der)
+    # ninguno de los casos previos, A no es temperamental
+    else: return False
 # Testing
 assert validarTemperamento(ABT1)
 assert validarTemperamento(ABT2)
 assert not validarTemperamento(AB3)
+
+# Cuerpo de función equivalente pero más desordenado
+
+#   if A == None
+#       return True
+#   elif A.izq == None:
+#       if A.der == None:
+#           return True
+#       else:
+#           if A.der.valor < A.valor:
+#               return validarTemperamento(A.der)
+#           else: return False
+#   elif A.der == None:
+#       if A.izq.valor < A.valor:
+#           return validarTemperamento(A.izq)
+#       else: return False
+#   elif A.izq.valor < A.valor and A.der.valor < A.valor:
+#       return validarTemperamento(A.izq) and validarTemperamento(A.der)
+#   else: return False
