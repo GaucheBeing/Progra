@@ -220,13 +220,12 @@ def anyapalabra(LR):
 
     # chequear antes que todo si la persona quiere escapar del juego
     if palabra == "salir()":
-        quit = input("¿De verdad quieres salir mortal?: ").lower()
-        # usamos in para no tener que poner cond1 or cond2 ... or cond_n multiples veces
+        quit = input("¿De verdad quieres salir mortal?").lower()
+        # usamos in para no tener que poner cond1 or cond2 ... or cond_n 
         if quit in ['si', 's', 'yes', 'y']:
             return None
         elif quit in ['no', 'n', 'not']:
-            print("\n Sigamos jugando mortal! \n")
-            return anyapalabra(LR)
+            print("\n Sigamos mortal! \n")
         else:
             print("\n Asumiré que no quieres seguir pequeño mortal, hasta la próxima \n ^-^")
             return None
@@ -243,25 +242,17 @@ def anyapalabra(LR):
         palabra = cabeza(LR).palabra
         print(f"incorrecto! la palabra correcta es \033[1m{palabra}\033[0m:")
 
-    cc = contarStatus(LR,"correcta")
-    ci = contarStatus(LR,"incorrecta")
-    cp = contarStatus(LR,"pendiente")
+    if palabra != "pasapalabra":
 
-    if cc == largo(LR):
-        print("\nMega Chad!")
-        return None
-    elif ci == largo(LR):
-        print("\nMega dou :'c \n intenta otra vez <3")
-        return None
-    elif cp == 0:
-        print(f"\nLa cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
-        if cc > ci:
-            print('Huh, ni tan mal humanx!')
+        cp = contarStatus(LR,"pendiente")
+        cc = contarStatus(LR,"correcta")
+        ci = contarStatus(LR,"incorrecta")
+
+        if cp == 0:
+            print(f"\n La cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
         else:
-            print("Ponle ganas mortal :c, no te rindas e intenta otra vez! ^-^")
-    else:
-        siguiente = siguientePendiente(LR)
-        return anyapalabra(siguiente)
+            siguiente = siguientePendiente(LR)
+            return anyapalabra(siguiente)
 
 
 # --------------------------------
