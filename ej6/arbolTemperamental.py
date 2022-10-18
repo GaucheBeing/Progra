@@ -41,13 +41,13 @@ def validarTemperamento(A):
         elif A.izq == None == A.der:
             return True
         # caso 1 rama izq
-        elif A.izq < A.valor and A.der == None:
+        elif A.izq.valor < A.valor and A.der == None:
             return validarTemperamento(A.izq)
         # caso 1 rama der
-        elif A.izq == None and A.der < A.valor:
+        elif A.izq == None and A.der.valor < A.valor:
             return validarTemperamento(A.der)
         # caso nodo ambas ramas
-        if A.izq < A.valor and A.der < A.valor:
+        if A.izq.valor < A.valor and A.der.valor < A.valor:
             return validarTemperamento(A.izq) and validarTemperamento(A.der)
         else: return False
 
@@ -57,17 +57,16 @@ def validarTemperamento(A):
 #            if A.der == None:
 #                return True
 #            else:
-#                if A.der < A.valor:
+#                if A.der.valor < A.valor:
 #                    return validarTemperamento(A.der)
 #                else: return False
 #        elif A.der == None:
-#            if A.izq < A.valor:
+#            if A.izq.valor < A.valor:
 #                return validarTemperamento(A.izq)
 #            else: return False
-#        elif A.izq < A.valor and A.der < A.valor:
+#        elif A.izq.valor < A.valor and A.der.valor < A.valor:
 #            return validarTemperamento(A.izq) and validarTemperamento(A.der)
 #        else: return False
-
 # Testing
 assert validarTemperamento(ABT1)
 assert validarTemperamento(ABT2)
