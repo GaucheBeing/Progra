@@ -17,9 +17,7 @@ def capicua(S):
     # slice-amos S partiendo desde el final hasta llegar al 1er elemento de S tal que obtenemos la lista invertida 
     # donde el elemento de índice i de la lista original está en la posición len(S)-i, con i natural tal que 0 <= i <= len(S)
     invertS = list(S[len(S) : : -1])
-    if S == invertS:
-        return True
-    else: return False
+    return S == invertS
 # test
 assert capicua('Lol')
 assert capicua('anita lava la tina')
