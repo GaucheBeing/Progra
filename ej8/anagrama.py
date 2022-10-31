@@ -18,8 +18,8 @@ def anagrama(S1, S2):
     assert type(S1) == type(S2) == str
     S1 = list(joiner(S1))
     S2 = list(joiner(S2))
-    sortedS1 = S1.sort()
-    sortedS2 = S2.sort()
+    S1.sort()
+    S2.sort()
     return S1 == S2
 # test
 assert anagrama('Happy end of semester...', 'amperes feed pythons')
