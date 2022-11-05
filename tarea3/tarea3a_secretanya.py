@@ -18,6 +18,7 @@ def posicion(S, abecedario):
 # test
 assert posicion('a', alfabeto) == 11
 assert posicion('ñ', alfabeto) == -1
+assert posicion('b', alfabeto) == 12
 
 
 # encriptadoStrix: str int str -> str
@@ -59,6 +60,7 @@ def encriptadoStrix(msg, llave, abecedario):
 # test
 assert encriptadoStrix('anya tiene hambre >:c', 8, alfabeto) == 'iv5i70qmvm7piujzm7>:k'
 assert encriptadoStrix("mensaje secreto!!", 0, alfabeto) == 'mensaje secreto!!'
+assert encriptadoStrix('hola mundo!', 1, alfabeto) == 'ipmb0nvoep!'
 
 
 # desencriptadoStrix: str int str -> str
@@ -77,6 +79,7 @@ def desencriptadoStrix(msg, llave, abecedario):
 # test
 assert desencriptadoStrix('iv5i70qmvm7piujzm7>:k', 8, alfabeto) == 'anya tiene hambre >:c'
 assert desencriptadoStrix("mensaje secreto!!", 0, alfabeto) == 'mensaje secreto!!'
+assert desencriptadoStrix('ipmb0nvoep!', 1, alfabeto) == 'hola mundo!'
 
 
 # --------------------------------
@@ -84,5 +87,25 @@ assert desencriptadoStrix("mensaje secreto!!", 0, alfabeto) == 'mensaje secreto!
 # --------------------------------
 
 
+# secretanya: None -> None
+# función recursiva que llama al resto de funciones para (de)codificar mensajes
 def secretanya():
-    return 
+    print('Bienvenidx al (de)codificador humanx! escribe la letra en paréntesis para elegir\n\n')
+    def _secretanya():
+        print('Acciones: Encriptar mensaje (E) - Desencriptar mensaje (D) - Salir (S)\n\n--------------------\n')
+        action = input('Acción: ').lower()
+        if action in ['salir', 's']:
+            print('Hasta pronto!')
+            return None 
+        msg = input('Mensaje: ')
+        key = input('Llave (número): ')
+        if not key.isnumeric():
+            print('La llave debe ser un número, partamos otra vez\n')
+            return _secretanya()
+        if action in ['encriptar', 'e']:
+            print(f'Mensaje encriptado: {encriptadoStrix(msg, int(key), alfabeto)}')
+        elif action in ['desencriptar', 'd']:
+            print(f'Mensaje desencriptado: {desencriptadoStrix(msg, int(key), alfabeto)}')
+        print('\n--------------------\n')
+        return _secretanya()
+    return _secretanya()
