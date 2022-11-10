@@ -1,3 +1,6 @@
+L1 = ["Alpha", "Beta", "Gamma", "Delta"]
+L2 = ['a', "be", 'ce', 'de']
+
 def conjunto(X):
     assert type(X) == list
     frecuencias = {}

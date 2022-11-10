@@ -1,5 +1,5 @@
-
 alfabeto = " 0123456789abcdefghijklmnopqrstuvwxyz"
+endl = "\n--------------------\n"
 
 
 # --------------------------------
@@ -10,7 +10,7 @@ alfabeto = " 0123456789abcdefghijklmnopqrstuvwxyz"
 # posicion: str str -> int
 # dado un carácter string entregar el número de la posición de este en el abecedario. Si no existe en el abecedario, entonces entregar -1
 # ej: posicion('a') => 11 y posición('ñ') => -1
-def posicion(S, abecedario):
+def posicion(S, abecedario=alfabeto):
     assert type(S) == str
     if S.lower() in abecedario:
         return list(abecedario).index(S)
@@ -24,7 +24,7 @@ assert posicion('b', alfabeto) == 12
 # encriptadoStrix: str int str -> str
 # recibe un string que representa un mensaje y un número que representa la llave, y entrega un nuevo string que representa el mensaje encriptado
 # ej: encriptadoStrix('anya tiene hambre >:c',8) => 'iv5i70qmvm7piujzm7>:k' y encriptadoStrix("mensaje secreto!!",0) => 'mensaje secreto!!' 
-def encriptadoStrix(msg, llave, abecedario):
+def encriptadoStrix(msg, llave, abecedario=alfabeto):
     assert type(msg) == str,        'tu mensaje debe ser una palabra o frase'
     assert type(llave) == int,      'tu "llave" debe ser un número entero'
 
@@ -66,7 +66,7 @@ assert encriptadoStrix('hola mundo!', 1, alfabeto) == 'ipmb0nvoep!'
 # desencriptadoStrix: str int str -> str
 # recibe un string que representa un mensaje encriptado y un número que representa la llave, y entrega un nuevo string que representa el mensaje desencriptado
 # ej: desencriptadoStrix('iv5i70qmvm7piujzm7>:k',8) => 'anya tiene hambre >:c' y desencriptadoStrix("mensaje secreto!!",0) => 'mensaje secreto!!'
-def desencriptadoStrix(msg, llave, abecedario):
+def desencriptadoStrix(msg, llave, abecedario=alfabeto):
     assert type(msg) == str,        'tu mensaje debe ser una palabra o frase'
     assert type(llave) == int,      'tu "llave" debe ser un número entero'
     # análogo a encriptar
@@ -89,23 +89,75 @@ assert desencriptadoStrix('ipmb0nvoep!', 1, alfabeto) == 'hola mundo!'
 
 # secretanya: None -> None
 # función recursiva que llama al resto de funciones para (de)codificar mensajes
-def secretanya():
-    print('Bienvenidx al (de)codificador humanx! escribe la letra en paréntesis para elegir\n\n')
+def recursivesecretanya():
+    print("Bienvenidx al (de)codificador humanx! escribe la letra en paréntesis para elegir\n\n")
     def _secretanya():
-        print('Acciones: Encriptar mensaje (E) - Desencriptar mensaje (D) - Salir (S)\n\n--------------------\n')
-        action = input('Acción: ').lower()
-        if action in ['salir', 's']:
-            print('Hasta pronto!')
-            return None 
-        msg = input('Mensaje: ')
-        key = input('Llave (número): ')
-        if not key.isnumeric():
-            print('La llave debe ser un número, partamos otra vez\n')
+        print(f"Acciones: Encriptar mensaje (E) - Desencriptar mensaje (D) - Salir (S)\n{endl}")
+        action = input("Acción: ").lower()
+        if action not in ["salir", 's', "encriptar", 'e', "desencriptar", 'd']:
+            print("escribe la letra en paréntesis para elegir\n")
             return _secretanya()
-        if action in ['encriptar', 'e']:
-            print(f'Mensaje encriptado: {encriptadoStrix(msg, int(key), alfabeto)}')
-        elif action in ['desencriptar', 'd']:
-            print(f'Mensaje desencriptado: {desencriptadoStrix(msg, int(key), alfabeto)}')
-        print('\n--------------------\n')
+        if action in ["salir", 's']:
+            print("Hasta pronto!\n")
+            return None 
+        msg = input("Mensaje: ")
+        key = input("Llave (número): ")
+        if not key.isnumeric():
+            print("La llave debe ser un número, partamos otra vez\n")
+            return _secretanya()
+        if action in ["encriptar", 'e']:
+            print(f"Mensaje encriptado: {encriptadoStrix(msg, int(key), alfabeto)}\n{endl}")
+        elif action in ["desencriptar", 'd']:
+            print(f"Mensaje desencriptado: {desencriptadoStrix(msg, int(key), alfabeto)}\n{endl}")
+        print(endl)
         return _secretanya()
     return _secretanya()
+
+# secretanya: None -> None
+# función iterativa que llama al resto de funciones para (de)codificar mensajes
+def secretanya():
+    print("Bienvenidx al (de)codificador humanx! escribe la letra en paréntesis para elegir\n\n")
+    acciones = []
+    mensajes = []
+    llaves = []
+    recibidos = []
+    while True:
+        print(f"Acciones: Encriptar mensaje (E) - Desencriptar mensaje (D) - Salir (S)\n{endl}")
+        action = input("Acción: ").lower()
+        if action not in ["salir", 's', "encriptar", 'e', "desencriptar", 'd']:
+            print("escribe la letra en paréntesis para elegir\n")
+            continue
+        if action in ["salir", 's']:
+            break
+        acciones.append(action)
+        msg = input("Mensaje: ")
+        mensajes.append(msg)
+        key = input("Llave (número): ")
+        llaves.append(str(key))
+        if not key.isnumeric():
+            print("La llave debe ser un número, partamos otra vez\n")
+            continue
+        if action in ["encriptar", 'e']:
+            msgEncrypt = encriptadoStrix(msg, int(key), alfabeto)
+            print(f"Mensaje encriptado: {msgEncrypt}\n{endl}")
+            recibidos.append([1, msgEncrypt])
+        elif action in ["desencriptar", 'd']:
+            msgDesencrypt = desencriptadoStrix(msg, int(key), alfabeto)
+            print(f"Mensaje desencriptado: {msgDesencrypt}\n{endl}")
+            recibidos.append([0, msgEncrypt])
+        print(endl)
+    escribir = input("¿Quieres guardar registro de lo escrito? (y/n)\n").lower()
+    if escribir in ["si", 's', "yes",'y']:
+        file = input("Nombre del archivo: ")
+        file = open(file + ".txt", 'w')
+        for action in acciones:
+            file.write(f"Acción: {action}\n")
+            for msg in mensajes:
+                file.write(f"Mensaje: {msg}\n")
+                for key in llaves:
+                    file.write(f"Llave: {key}\n")
+                    for recibido in recibidos:
+                        if recibido[0] == 1:
+                            file.write(f"Mensaje encriptado: {recibido[1]} {endl}")
+                        else: file.write(f"Mensaje desencriptado: {recibido[1]} {endl}")
+    else: print("Hasta pronto!\n")
