@@ -125,7 +125,7 @@ def secretanya():
     grabar = input("\n¿Quieres guardar registro de lo escrito humanx? (y/n)").lower()
     if grabar in ["si", 's', "yes",'y']:
         file = input("Nombre del archivo: ")
-        file = open(file + ".txt", 'w', encoding= "utf-8")
+        file = open(file + ".txt", 'w', encoding="utf-8")
         file.write(f"Transcripción del diálogo humanx-(de)codificador, se ignoran los intentos de uso fallidos {endl}\n")
         # accedemos a cada codificación bien hecha y guardada en la lista de codificaciones, escribimos los elementos de estas listas y 
         # hacemos la distinción en los casos que se codificó o encriptó un mensaje 
@@ -173,7 +173,7 @@ def recursive_secretanya():
         grabar = input("¿Quieres guardar registro de lo escrito humanx? (y/n)\n").lower()
         if grabar in ["si", 's', "yes",'y']:
             file = input("Nombre del archivo: ")
-            file = open(file + ".txt", 'w', encoding= "utf-8")
+            file = open(file + ".txt", 'w', encoding="utf-8")
             file.write(f"Transcripción del diálogo humanx-(de)codificados, se ignoran los intentos de uso fallidos {endl}\n")
             for cod in L:
                 file.write(f"Acción: {cod[0]}\nMensaje: {cod[1]}\nLlave: {cod[2]}\n")
