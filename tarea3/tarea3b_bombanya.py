@@ -85,7 +85,6 @@ def bombanya(N, bombas=3, hint=0):
             return None            
 
 
-
     # logica si se perdio el juego
     print("")
     print("Oh no, se acabaron los intentos")
