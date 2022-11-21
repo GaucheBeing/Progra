@@ -1,7 +1,7 @@
 # listaPony: str str -> list | None
-# Dado el nombre de un archivo y una letra, entrega una lista con todos los nombres que empiecen por la letra dada.
+# Dado el nombre de un archivo y una letra, entrega una lista ordenada alfabéticamente con todos los nombres que empiecen por la letra dada.
 # Agregado: en caso de inexistencia se muestra en la consola de la persona usuarix el mensaje indicando esto
-# Ej: 
+# Ej: listaPony("ponys", 'Z') => ['Zapp', 'Zephyr Breeze', 'Zesty Gourmand', 'Zipporwhill', 'Zirconic'] 
 def listaPony(archN, letra):
     assert type(archN) == type(letra) == str
     # Sólo para este caso particular podemos obligar a que la letra/palabra u oración/set de palabras

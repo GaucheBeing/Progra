@@ -218,7 +218,7 @@ def iniciar(dificultad):
 # Función: inicia el juego PasaPalabra
 def anyapalabra(LR):
     assert esLista(LR)
-    print("\n")
+    print('\n')
     mostrarRosco(LR)
     mostrarDefinicion(LR)
 
@@ -228,9 +228,9 @@ def anyapalabra(LR):
     if palabra == "salir()":
         quit = input("¿De verdad quieres salir mortal?: ").lower()
         # usamos in para no tener que poner cond1 or cond2 ... or cond_n multiples veces
-        if quit in ['si', 's', 'yes', 'y']:
+        if quit in ["si", 's', "yes", 'y']:
             return None
-        elif quit in ['no', 'n', 'not']:
+        elif quit in ["no", 'n', "not"]:
             print("\n Sigamos jugando mortal! \n")
             return anyapalabra(LR)
         else:
@@ -261,9 +261,9 @@ def anyapalabra(LR):
         print("Ponle ganas mortal :c, no te rindas e intenta otra vez! ^-^")
         return None
     elif cantPendiente == 0:
-        print(f"\nLa cantidad de respuestas correctas es {cc} y la cantidad de respuestas incorrectas es {ci}")
+        print(f"\nLa cantidad de respuestas correctas es {cantCorrect} y la cantidad de respuestas incorrectas es {cantIncorrect}")
         if cantCorrect > cantIncorrect + 1:
-            print('Huh, ni tan mal humanx!')
+            print("Huh, ni tan mal humanx!")
         else:
             print("\nMega dou :'c \n intenta otra vez <3")
     else:

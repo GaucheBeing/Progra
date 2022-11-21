@@ -4,7 +4,7 @@ from tarea3b_escenario import *
 # bombanya: int int any -> None
 # programa interactivo que simula las acciones del juego
 # usando el objeto Escenario definido en otro archivo
-def bombanya(N, bombas=3, hint=0):
+def bombanya(N, bombas=3, hint=False):
     assert type(N) == type(bombas) == int,      "Aquí debe ir un número entero ^-^"
     # mensajes de bienvenida
     print("Ayudemos a Anya a salvar la ciudad!")
@@ -70,7 +70,7 @@ def bombanya(N, bombas=3, hint=0):
             print("")
 
             # --- Extra ---
-            if hint not in ["no", 'n', 0]:
+            if hint not in [False, "no", 'n', 0]:
                 print(f"La bomba más próxima se encuentra a una distancia de {ciudad.distancia(fila,columna)} bloques")
                 print("")
             # -------------
