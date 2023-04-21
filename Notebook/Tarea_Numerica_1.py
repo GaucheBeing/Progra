@@ -54,19 +54,25 @@ def R(x, d, Phi=None, sigma=sigma_1):
 
 ####### Parte b ####### 
 
-x = np.linspace(-1, 1, 100)
-y = np.linspace(-1, 1, 100)
+# fijamos las dimensiones de cada capa, entrada y salida
+# también usamos un phi aleatorio para que haga sentido calcular las imagenes de R(Phi)(x,y) y graficar
+d = [2, 2, 1]
+Phi_fijo = get_phi(d)
+
+x = np.linspace(-1, 1, 101)
+y = np.linspace(-1, 1, 101)
 XX, YY = np.meshgrid(x,y)
 
 def u(XX, YY, d, Phi=None, sigma=sigma_1):
     ZZ = np.zeros([len(XX), len(YY)])
-    for i, j in zip(range(len(XX)), range(len(YY))):
-        vec_ij = [XX[i][j], YY[i][j]]
-        ZZ[i][j] = R(vec_ij, d, Phi, sigma)
+    for i in range(len(XX)):
+        for j in range(len(YY)):
+            vec_ij = [XX[i][j], YY[i][j]]
+            ZZ[i][j] = R(vec_ij, d, Phi, sigma)
     return ZZ
 
-ZZ_1 = u(XX, YY, [2,2,1], None, sigma_1)
-ZZ_2 = u(XX, YY, [2,2,1], None, sigma_2)
+ZZ_1 = u(XX, YY, [2,2,1], Phi_fijo, sigma_1)
+ZZ_2 = u(XX, YY, [2,2,1], Phi_fijo, sigma_2)
 
 # graficar la función con sigma_1 (ReLu)
 fig = plt.figure(figsize=(10,6))
