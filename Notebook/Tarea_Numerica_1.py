@@ -39,7 +39,7 @@ def sigma_1(vec):
 def sigma_2(vec):
     if type(vec) != np.ndarray:
         vec = np.array(vec)
-    return (1+np.exp(vec))**(-1)
+    return (1+np.exp(-vec))**(-1)
 
 def R(x, d, Phi=None, sigma=sigma_1):
     if type(x) != np.ndarray:
