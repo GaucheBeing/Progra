@@ -37,7 +37,7 @@ plt.show()
 
 fig, ax = plt.subplots()
 
-# Graficar la función xh(t) contra el tiempo t
+# Graficar la función vh(t) contra el tiempo t
 ax.plot(t, v, color="green")
 
 ax.grid(True)
@@ -52,7 +52,7 @@ plt.show()
 
 fig, ax = plt.subplots()
 
-# Graficar la función xh(t) contra el tiempo t
+# Graficar la función A(w) contra la frecuencia angular w
 ax.plot(w, a, color="green")
 
 ax.grid(True)

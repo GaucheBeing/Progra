@@ -47,10 +47,10 @@ def R(x, d, Phi=None, sigma=sigma_1):
     if Phi == None:
         Phi = get_phi(d)
     nodos = [x]
-    for i in range(len(Phi)):
+    for i in range(len(Phi)-1):
         x = sigma(Phi[i][0].dot(x) + Phi[i][1])
         nodos.append(x)
-    return nodos[-1]
+    return Phi[-1][0].dot(nodos[-1]) + Phi[-1][1]
 
 ####### Parte b ####### 
 
